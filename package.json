@@ -1,0 +1,87 @@
+{
+  "name": "csv-visualizer-pretty-table",
+  "displayName": "CSV Pretty Visualizer",
+  "description": "Visualize CSV and TSV files in a rich, interactive table view directly inside VSCode",
+  "publisher": "layem-software",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/layem-software/csv-visualizer-pretty-table"
+  },
+  "bugs": {
+    "url": "https://github.com/layem-software/csv-visualizer-pretty-table/issues"
+  },
+  "homepage": "https://github.com/layem-software/csv-visualizer-pretty-table#readme",
+  "icon": "assets/logo.png",
+  "categories": [
+    "Data Science",
+    "Visualization",
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:csv"
+  ],
+  "scripts": {
+    "compile": "bun run tsc -p .",
+    "watch": "bun run tsc -w -p ."
+  },
+  "main": "./out/extension.js",
+  "engines": {
+    "vscode": "^1.109.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "csv",
+        "extensions": [".csv", ".tsv"],
+        "aliases": ["CSV", "csv"],
+        "mimetypes": ["text/csv"]
+      }
+    ],
+    "commands": [
+      {
+        "command": "csvVisualizer.openView",
+        "title": "Open Table View",
+        "category": "CSV",
+        "icon": "$(table)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "csvVisualizer.openView",
+          "when": "resourceLangId == csv",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "csvVisualizer.openView",
+          "when": "resourceLangId == csv",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "csvVisualizer.openView",
+          "when": "resourceExtname == .csv || resourceExtname == .tsv",
+          "group": "navigation"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "csvVisualizer.openView",
+        "key": "shift+f",
+        "mac": "cmd+shift+f",
+        "when": "resourceLangId == csv"
+      }
+    ]
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^25.2.1",
+    "@types/vscode": "^1.109.0",
+    "typescript": "^5.9.3"
+  }
+}
