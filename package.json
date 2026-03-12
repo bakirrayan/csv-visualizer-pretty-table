@@ -6,12 +6,12 @@
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/layem-software/csv-visualizer-pretty-table"
+    "url": "https://github.com/bakirrayan/csv-visualizer-pretty-table"
   },
   "bugs": {
-    "url": "https://github.com/layem-software/csv-visualizer-pretty-table/issues"
+    "url": "https://github.com/bakirrayan/csv-visualizer-pretty-table/issues"
   },
-  "homepage": "https://github.com/layem-software/csv-visualizer-pretty-table#readme",
+  "homepage": "https://github.com/bakirrayan/csv-visualizer-pretty-table#readme",
   "icon": "assets/logo.png",
   "categories": [
     "Data Science",
