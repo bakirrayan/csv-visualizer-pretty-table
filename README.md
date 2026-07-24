@@ -1,7 +1,8 @@
 <div align="center">
-  <img src="assets/logo.png" width="96" height="96" alt="CSV Pretty Visualizer logo">
+  <img src="https://raw.githubusercontent.com/bakirrayan/csv-visualizer-pretty-table/main/assets/logo.png" width="96" height="96" alt="CSV Pretty Visualizer logo">
   <h1>CSV Pretty Visualizer</h1>
-  <p>A VSCode extension that opens CSV and TSV files in a rich, interactive table view — right inside your editor.</p>
+  <p><b>Open CSV and TSV files as a rich, interactive table — right inside VS Code.</b><br>
+  Search, filter, sort, type, reorder, select and copy, without leaving your editor or opening a spreadsheet.</p>
 
   <a href="https://marketplace.visualstudio.com/items?itemName=layem-software.csv-visualizer-pretty-table">
     <img src="https://img.shields.io/visual-studio-marketplace/v/layem-software.csv-visualizer-pretty-table?color=7c6af7&label=VS%20Marketplace&logo=visual-studio-code" alt="VS Marketplace">
@@ -9,41 +10,54 @@
   <a href="https://marketplace.visualstudio.com/items?itemName=layem-software.csv-visualizer-pretty-table">
     <img src="https://img.shields.io/visual-studio-marketplace/d/layem-software.csv-visualizer-pretty-table?color=7c6af7&label=installs" alt="Installs">
   </a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=layem-software.csv-visualizer-pretty-table">
+    <img src="https://img.shields.io/visual-studio-marketplace/r/layem-software.csv-visualizer-pretty-table?color=7c6af7&label=rating" alt="Rating">
+  </a>
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-7c6af7" alt="MIT License">
   </a>
 </div>
 
+<br>
+
+![The CSV table view](https://raw.githubusercontent.com/bakirrayan/csv-visualizer-pretty-table/main/assets/screenshot-table.png)
+
 ---
 
-<!-- Replace this comment with a demo GIF:
-     Record your screen opening a CSV file, toggling columns, sorting, filtering, and copying rows.
-     Recommended tool: https://github.com/phw/peek or https://www.screentogif.com/
-     Save as: assets/demo.gif  -->
-<!-- ![Demo](assets/demo.gif) -->
+## Contents
 
-## Features
+- [Installation](#installation)
+- [Quick start](#quick-start)
+- [Features](#features)
+  - [Interactive table view](#interactive-table-view)
+  - [Live stats](#live-stats)
+  - [Global search](#global-search)
+  - [Per-column filters](#per-column-filters)
+  - [Unique value picker](#unique-value-picker)
+  - [Sorting](#sorting)
+  - [Column types](#column-types)
+  - [Column visibility and reordering](#column-visibility-and-reordering)
+  - [Row selection and copy](#row-selection-and-copy)
+  - [Cell copy and expand](#cell-copy-and-expand)
+  - [Pagination](#pagination)
+  - [Image thumbnails](#image-thumbnails)
+  - [Full-screen lightbox](#full-screen-lightbox)
+  - [Theme aware](#theme-aware)
+  - [Live updates](#live-updates)
+  - [Multiple files at once](#multiple-files-at-once)
+  - [Delimiter detection](#delimiter-detection)
+- [Keyboard shortcuts](#keyboard-shortcuts)
+- [Security](#security)
+- [Development](#development)
+- [Changelog](#changelog)
+- [Contributing](#contributing)
+- [License](#license)
 
-- **Interactive table view** — renders any `.csv` or `.tsv` file as a clean, scrollable table
-- **Global search** — filter rows across all columns at once
-- **Per-column filtering** — contains, equals, starts with, ends with, greater/less than, and more
-- **Unique value filter** — pick specific values from a dropdown per column
-- **Sort** — click the up/down arrows on any column header
-- **Column types** — set a column as `text`, `numeric`, or `date` to enable type-aware filtering
-- **Column visibility** — hide/show individual columns or toggle all at once
-- **Column reordering** — move columns left or right
-- **Row selection & copy** — select individual rows, all rows on a page, or all filtered rows; copy to clipboard
-- **Pagination** — choose 10 / 25 / 50 / 100 / 250 / 500 rows per page
-- **Live stats** — see total rows, visible rows, total columns, and visible columns at a glance
-- **Image rendering** — cells containing image URLs are rendered as thumbnails with a full-screen lightbox gallery
-- **Cell copy** — hover any cell to get a one-click copy button
-- **Multiple files** — open several CSV files simultaneously, each in its own panel
+---
 
 ## Installation
 
-**From the VS Marketplace**
-
-Search for **CSV Pretty Visualizer** in the Extensions panel (`Ctrl+Shift+X`) or install directly:
+**From the VS Marketplace** — search for **CSV Pretty Visualizer** in the Extensions panel (`Ctrl+Shift+X`), or install directly:
 
 ```
 ext install layem-software.csv-visualizer-pretty-table
@@ -52,66 +66,204 @@ ext install layem-software.csv-visualizer-pretty-table
 **From a `.vsix` file**
 
 ```bash
-code --install-extension csv-visualizer-pretty-table-1.0.0.vsix
+code --install-extension csv-visualizer-pretty-table-1.1.0.vsix
 ```
 
-## Usage
+Requires VS Code `1.109.0` or newer.
 
-### Opening the table view
+## Quick start
 
-There are three ways to open a CSV/TSV file in the table view:
+Open any `.csv` or `.tsv` file, then use whichever of these you prefer:
 
-1. **Editor title bar** — click the table icon (⊞) that appears in the top-right of the editor when a CSV file is active
-2. **Right-click** — right-click anywhere in the CSV editor and choose **CSV › Open Table View**
-3. **Explorer** — right-click a `.csv` or `.tsv` file in the file explorer and choose **CSV › Open Table View**
-4. **Keyboard shortcut** — `Shift+F` (Windows/Linux) or `Cmd+Shift+F` (macOS) while the CSV file is focused
+| # | How | Where |
+|---|---|---|
+| 1 | Click the table icon (⊞) in the editor title bar | Top-right of the editor, when a CSV is active |
+| 2 | **CSV › Open Table View** | Right-click inside the CSV editor |
+| 3 | **CSV › Open Table View** | Right-click a `.csv`/`.tsv` file in the Explorer — the file does not need to be open |
+| 4 | `Ctrl+Alt+T` / `Cmd+Alt+T` | While the CSV editor is focused |
 
-### Searching and filtering
+The table opens in its own panel. Everything below is available immediately — no configuration and no settings to set.
 
-<!-- Replace with: assets/filtering.gif -->
+---
 
-Use the **Global Search** box to instantly narrow rows across every column.
+## Features
 
-For more granular control, expand **Column Configuration** and use the per-column filter inputs. Select a filter operator from the dropdown (contains, equals, >, <, etc.) and type your value.
+### Interactive table view
 
-Click **unique values** on any column header to open a checkbox dropdown and select only the values you care about.
+Any `.csv` or `.tsv` file becomes a clean, scrollable table with a sticky header, zebra-free row hovering, and a horizontal scroll for wide files. Columns size themselves to their contents, and long values are truncated with an ellipsis until you click them.
+
+![The CSV table view](https://raw.githubusercontent.com/bakirrayan/csv-visualizer-pretty-table/main/assets/screenshot-table.png)
+
+### Live stats
+
+Four counters at the top always reflect the current view: total rows in the file, rows matching your filters, total columns, and columns currently visible.
+
+![Live stats counters](https://raw.githubusercontent.com/bakirrayan/csv-visualizer-pretty-table/main/assets/screenshot-stats.png)
+
+### Global search
+
+One box filters rows across every column at once, case-insensitively, as you type. Here `Lighting` narrows 30 rows to 10.
+
+![Global search across all columns](https://raw.githubusercontent.com/bakirrayan/csv-visualizer-pretty-table/main/assets/screenshot-search.png)
+
+### Per-column filters
+
+Every column header carries its own operator dropdown and value box. Filters across different columns combine, so you can narrow down with as many conditions as you like.
+
+Available operators:
+
+| Text | Numeric | Emptiness |
+|---|---|---|
+| Contains | Greater `>` | Is Empty |
+| Equals | Less `<` | Not Empty |
+| Not Equals | Greater or equal `>=` | |
+| Starts With | Less or equal `<=` | |
+| Ends With | | |
+
+Below, `units` is filtered with **Greater >** `20`:
+
+![Per-column filter with a numeric operator](https://raw.githubusercontent.com/bakirrayan/csv-visualizer-pretty-table/main/assets/screenshot-column-filter.png)
+
+### Unique value picker
+
+Click **Select Values** on any column to get a checkbox list of that column's distinct values, each with the number of rows it appears in, ordered by frequency. Tick only what you want to see, or use **(Select All)** / **(Clear All)**.
+
+Here `Accessories` has been unticked, leaving the 21 Furniture and Lighting rows:
+
+![Unique value checkbox picker](https://raw.githubusercontent.com/bakirrayan/csv-visualizer-pretty-table/main/assets/screenshot-unique-values.png)
+
+> On very high-cardinality columns the list shows the 500 most common values so the dropdown stays instant; the count in the button always reflects the true total.
 
 ### Sorting
 
-<!-- Replace with: assets/sorting.gif -->
+Each header has ▲ ▼ buttons — ascending and descending. The active direction stays highlighted. Columns typed as **Number** or **Date** sort by value rather than as text, and values that cannot be parsed are kept at the end instead of scattered through the results.
 
-Each column header has ▲ ▼ sort buttons. Click once to sort ascending, again to sort descending.
+`revenue` sorted descending:
 
-### Managing columns
+![Descending numeric sort](https://raw.githubusercontent.com/bakirrayan/csv-visualizer-pretty-table/main/assets/screenshot-sort.png)
 
-<!-- Replace with: assets/columns.gif -->
+### Column types
 
-Expand **Column Configuration** to:
+Set a type per column to change both how it renders and how it filters and sorts:
 
-- Toggle individual columns on or off
-- Select/deselect all columns at once
-- Change a column's type (`text` / `numeric` / `date`)
-- Reorder columns with the ◀ ▶ arrows
+| Type | Rendering |
+|---|---|
+| **Text** | Plain text (default) |
+| **Number** | Right-aligned, thousands separators, tabular figures |
+| **Date** | Formatted to your locale |
+| **Boolean** | Green ✓ True / red ✗ False for `true`/`1`/`yes`/`y` |
+| **Link** | Clickable link, opened externally |
+| **Image** | Thumbnail with lightbox — see [Image thumbnails](#image-thumbnails) |
+| **JSON** | Pretty-printed and monospaced |
+| **Array**, **HTML**, **Raw**, **Base64** | Monospaced text |
 
-### Selecting and copying rows
+![Number, date, boolean and link columns](https://raw.githubusercontent.com/bakirrayan/csv-visualizer-pretty-table/main/assets/screenshot-types.png)
 
-<!-- Replace with: assets/copy.gif -->
+### Column visibility and reordering
 
-Check the checkbox at the start of any row to select it. Use **Select All Rows** to grab everything currently visible (respects active filters). Click **Copy Selected** to copy the rows as tab-separated values, ready to paste into a spreadsheet.
+Expand **Column Configuration** to hide columns you don't care about, set each column's type, and move columns left or right with ◀ ▶. One checkbox toggles every column at once. Hidden columns are excluded from copied output.
 
-### Image columns
+![Column configuration panel](https://raw.githubusercontent.com/bakirrayan/csv-visualizer-pretty-table/main/assets/screenshot-columns.png)
 
-If a cell contains a URL ending in `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`, or `.svg`, the extension renders it as a thumbnail. Click the thumbnail to open a full-screen lightbox with navigation between all images in that column.
+### Row selection and copy
 
-## Keyboard Shortcuts
+Tick individual rows, use the header checkbox to take the whole page, or **Select All Rows** to take everything matching your current filters. The counter tracks the total, and **Copy Selected** puts the rows on your clipboard as **tab-separated values** — ready to paste straight into Excel, Google Sheets or Numbers. Only visible columns are copied, in the order shown.
+
+![Selected rows ready to copy](https://raw.githubusercontent.com/bakirrayan/csv-visualizer-pretty-table/main/assets/screenshot-selection.png)
+
+### Cell copy and expand
+
+Hover any cell for a one-click **Copy** button that copies the cell's full, unformatted value — the raw text, not the formatted display value. Click a cell to expand it in place when its content is wider than the column, which is handy for long descriptions, JSON blobs and URLs.
+
+![The per-cell copy button](https://raw.githubusercontent.com/bakirrayan/csv-visualizer-pretty-table/main/assets/screenshot-cell-copy.png)
+
+### Pagination
+
+Choose 10, 25, 50, 100, 250, 500 or **all** rows per page. Jump with **First** / **Previous** / **Next** / **Last**, or type a page number and press `Enter`. The readout always says exactly which rows you are looking at.
+
+![Pagination controls on page 3](https://raw.githubusercontent.com/bakirrayan/csv-visualizer-pretty-table/main/assets/screenshot-pagination.png)
+
+### Image thumbnails
+
+Set a column's type to **Image** and its URLs render as thumbnails. A cell may hold:
+
+- a single URL — `https://example.com/a.png`
+- a comma-separated list — `a.png, b.png, c.png`
+- a JSON or Python-style array — `['a.png', 'b.png']`
+- a `data:` URI, which is kept intact even though it contains commas
+
+Images that fail to load fall back to a placeholder rather than a broken-image icon.
+
+![Image thumbnails in a gallery column](https://raw.githubusercontent.com/bakirrayan/csv-visualizer-pretty-table/main/assets/screenshot-images.png)
+
+### Full-screen lightbox
+
+Click any thumbnail for a full-screen gallery of every image in that cell, with a counter, a thumbnail strip, and previous/next navigation. Use `←` and `→` to move, `Esc` to close.
+
+![Full-screen image lightbox](https://raw.githubusercontent.com/bakirrayan/csv-visualizer-pretty-table/main/assets/screenshot-lightbox.png)
+
+### Theme aware
+
+The panel reads VS Code's own theme colours, so it matches your editor instead of forcing a dark palette. The same file under a light theme:
+
+![The table under a light theme](https://raw.githubusercontent.com/bakirrayan/csv-visualizer-pretty-table/main/assets/screenshot-light-theme.png)
+
+### Live updates
+
+Edit the CSV in the editor with the table open and the table refreshes as you type — no need to close and reopen the panel.
+
+### Multiple files at once
+
+Every file gets its own panel with its own filters, sort, types and selection. Re-running the command on a file that is already open focuses its existing panel instead of opening a duplicate.
+
+### Delimiter detection
+
+The delimiter is detected automatically from `,` `;` `Tab` and `|` by sampling several lines and preferring the one that splits them consistently. Quoted delimiters are ignored, so `name;"city, state";population` is read as three columns, and `.tsv` files are always tab-delimited. Quoted fields, escaped `""` quotes, embedded newlines and CRLF line endings are all handled, and short rows are padded so trailing columns stay aligned.
+
+---
+
+## Keyboard shortcuts
 
 | Action | Windows / Linux | macOS |
 |---|---|---|
-| Open Table View | `Shift+F` | `Cmd+Shift+F` |
+| Open Table View | `Ctrl+Alt+T` | `Cmd+Alt+T` |
+| Go to typed page | `Enter` in the page box | `Enter` in the page box |
+| Lightbox: previous / next image | `←` / `→` | `←` / `→` |
+| Lightbox: close | `Esc` | `Esc` |
+
+## Security
+
+CSV files are untrusted input, so the table view treats them that way:
+
+- The webview runs under a strict nonce-based Content Security Policy with no inline scripts and no remote code.
+- Every header and cell reaches the page as text, never as markup — a file containing `<img src=x onerror=…>` displays those characters rather than executing them.
+- **Link** columns only follow `http:`, `https:` and `mailto:` URLs; anything else, including `javascript:`, is shown as plain text.
+
+## Development
+
+```bash
+bun install
+bun run check      # compile the extension and type-check the webview
+bun run package    # build a .vsix
+```
+
+Press `F5` in VS Code to launch an Extension Development Host with the fixtures folder open.
+
+| Path | What it is |
+|---|---|
+| [src/](src/) | Extension host: command wiring, panel lifecycle, CSV parser |
+| [media/](media/) | The webview UI — plain HTML, CSS and JS, no build step |
+| [scripts/fixtures/](scripts/fixtures/) | Sample, hostile, image and odd-delimiter CSVs for manual testing |
+| `node scripts/capture.mjs` | Regenerates every screenshot in this README with headless Chrome |
+| `node scripts/smoke.mjs` | Runs the webview against the hostile fixture and asserts the escaping, filter and selection invariants |
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on [GitHub](https://github.com/layem-software/csv-visualizer-pretty-table).
+Bug reports and pull requests are welcome on [GitHub](https://github.com/bakirrayan/csv-visualizer-pretty-table). If you are reporting a parsing problem, a small sample file that reproduces it helps enormously.
 
 ## License
 

@@ -1,0 +1,19 @@
+# README screenshots are served from raw.githubusercontent.com, so the packaged
+# copies would never be read. assets/logo.png is the extension icon — keep it.
+assets/screenshot-*.png
+
+# Sources and build config — only out/ and media/ are needed at runtime.
+src/**
+scripts/**
+tsconfig.json
+tsconfig.media.json
+bun.lock
+logo.svg
+**/*.map
+**/*.ts
+!out/**/*.js
+.vscode/**
+.vscode-test/**
+.gitignore
+*.vsix
+node_modules/**

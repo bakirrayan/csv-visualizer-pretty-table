@@ -3,7 +3,8 @@
   "displayName": "CSV Pretty Visualizer",
   "description": "Visualize CSV and TSV files in a rich, interactive table view directly inside VSCode",
   "publisher": "layem-software",
-  "version": "1.0.0",
+  "version": "1.1.0",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/bakirrayan/csv-visualizer-pretty-table"
@@ -18,12 +19,27 @@
     "Visualization",
     "Other"
   ],
+  "keywords": [
+    "csv",
+    "tsv",
+    "table",
+    "viewer",
+    "data"
+  ],
+  "galleryBanner": {
+    "color": "#0a0e14",
+    "theme": "dark"
+  },
   "activationEvents": [
     "onLanguage:csv"
   ],
   "scripts": {
     "compile": "bun run tsc -p .",
-    "watch": "bun run tsc -w -p ."
+    "watch": "bun run tsc -w -p .",
+    "check:media": "bun run tsc -p tsconfig.media.json",
+    "check": "bun run compile && bun run check:media",
+    "package": "bun run check && bunx @vscode/vsce package",
+    "publish": "bun run check && bunx @vscode/vsce publish"
   },
   "main": "./out/extension.js",
   "engines": {
@@ -72,13 +88,14 @@
     "keybindings": [
       {
         "command": "csvVisualizer.openView",
-        "key": "shift+f",
-        "mac": "cmd+shift+f",
-        "when": "resourceLangId == csv"
+        "key": "ctrl+alt+t",
+        "mac": "cmd+alt+t",
+        "when": "resourceLangId == csv && editorTextFocus"
       }
     ]
   },
   "devDependencies": {
+    "@vscode/vsce": "^3.6.0",
     "@types/bun": "latest",
     "@types/node": "^25.2.1",
     "@types/vscode": "^1.109.0",

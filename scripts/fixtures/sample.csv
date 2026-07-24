@@ -1,0 +1,31 @@
+order_id,product,category,region,units,unit_price,revenue,order_date,fulfilled,customer_rating,product_url
+SO-10001,Aurora Desk Lamp,Lighting,North,12,48.50,582.00,2026-01-14,true,4.6,https://example.com/products/aurora-desk-lamp
+SO-10002,Meridian Office Chair,Furniture,South,4,289.00,1156.00,2026-01-15,true,4.2,https://example.com/products/meridian-office-chair
+SO-10003,Cobalt Standing Desk,Furniture,East,2,615.75,1231.50,2026-01-15,false,4.8,https://example.com/products/cobalt-standing-desk
+SO-10004,Lumen Floor Lamp,Lighting,West,9,132.00,1188.00,2026-01-16,true,3.9,https://example.com/products/lumen-floor-lamp
+SO-10005,Atlas Bookshelf,Furniture,North,6,204.25,1225.50,2026-01-17,true,4.4,https://example.com/products/atlas-bookshelf
+SO-10006,Halo Pendant Light,Lighting,South,15,76.40,1146.00,2026-01-18,false,4.1,https://example.com/products/halo-pendant-light
+SO-10007,Nimbus Desk Mat,Accessories,East,32,24.99,799.68,2026-01-18,true,4.7,https://example.com/products/nimbus-desk-mat
+SO-10008,Vertex Monitor Arm,Accessories,West,18,89.95,1619.10,2026-01-19,true,4.5,https://example.com/products/vertex-monitor-arm
+SO-10009,Solace Armchair,Furniture,North,3,470.00,1410.00,2026-01-20,false,4.9,https://example.com/products/solace-armchair
+SO-10010,Beacon Task Light,Lighting,South,21,58.75,1233.75,2026-01-21,true,4.0,https://example.com/products/beacon-task-light
+SO-10011,Quill Cable Tray,Accessories,East,45,18.50,832.50,2026-01-22,true,3.8,https://example.com/products/quill-cable-tray
+SO-10012,Onyx Filing Cabinet,Furniture,West,7,342.00,2394.00,2026-01-22,true,4.3,https://example.com/products/onyx-filing-cabinet
+SO-10013,Prism Wall Sconce,Lighting,North,11,94.20,1036.20,2026-01-23,false,4.2,https://example.com/products/prism-wall-sconce
+SO-10014,Drift Footrest,Accessories,South,26,41.75,1085.50,2026-01-24,true,4.6,https://example.com/products/drift-footrest
+SO-10015,Cascade Room Divider,Furniture,East,5,388.40,1942.00,2026-01-25,true,4.1,https://example.com/products/cascade-room-divider
+SO-10016,Ember Reading Light,Lighting,West,14,67.30,942.20,2026-01-26,true,4.4,https://example.com/products/ember-reading-light
+SO-10017,Slate Laptop Stand,Accessories,North,38,52.00,1976.00,2026-01-27,false,4.8,https://example.com/products/slate-laptop-stand
+SO-10018,Terrace Side Table,Furniture,South,8,178.90,1431.20,2026-01-28,true,3.7,https://example.com/products/terrace-side-table
+SO-10019,Vantage Ring Light,Lighting,East,17,112.60,1914.20,2026-01-29,true,4.5,https://example.com/products/vantage-ring-light
+SO-10020,Grove Plant Shelf,Accessories,West,23,63.25,1454.75,2026-01-30,true,4.2,https://example.com/products/grove-plant-shelf
+SO-10021,Pillar Coat Rack,Furniture,North,10,146.00,1460.00,2026-02-02,false,3.9,https://example.com/products/pillar-coat-rack
+SO-10022,Flare Under-Cabinet,Lighting,South,29,44.80,1299.20,2026-02-03,true,4.3,https://example.com/products/flare-under-cabinet
+SO-10023,Anchor Monitor Riser,Accessories,East,19,71.50,1358.50,2026-02-04,true,4.7,https://example.com/products/anchor-monitor-riser
+SO-10024,Haven Lounge Sofa,Furniture,West,2,1240.00,2480.00,2026-02-05,true,4.9,https://example.com/products/haven-lounge-sofa
+SO-10025,Vista Desk Lamp,Lighting,North,16,86.25,1380.00,2026-02-06,false,4.0,https://example.com/products/vista-desk-lamp
+SO-10026,Ridge Keyboard Tray,Accessories,South,27,55.40,1495.80,2026-02-07,true,4.1,https://example.com/products/ridge-keyboard-tray
+SO-10027,Harbor Conference Table,Furniture,East,1,1875.00,1875.00,2026-02-09,true,4.6,https://example.com/products/harbor-conference-table
+SO-10028,Signal Strip Light,Lighting,West,34,38.90,1322.60,2026-02-10,true,3.8,https://example.com/products/signal-strip-light
+SO-10029,Compass Drawer Unit,Furniture,North,6,265.30,1591.80,2026-02-11,false,4.4,https://example.com/products/compass-drawer-unit
+SO-10030,Nova Webcam Light,Accessories,South,22,79.95,1758.90,2026-02-12,true,4.5,https://example.com/products/nova-webcam-light

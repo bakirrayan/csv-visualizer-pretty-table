@@ -1,0 +1,5 @@
+id,<img src=x onerror=alert(1)>,O'Brien,"a""b",link,notes,notes
+1,"<script>alert(""xss"")</script>",D'Angelo,"say ""hi""",javascript:alert(1),first notes col,second notes col
+2,</td></tr><tr><td>broken,it's fine,"quote""inside",https://example.com/ok,plain,other
+3,&lt;already escaped&gt;,O'Reilly,"tab	here",mailto:someone@example.com,semi;colon,pipe|char
+4,${injection},'; DROP TABLE t; --,back`tick,"data:text/html,<h1>no</h1>","comma, inside",newline test

@@ -1,34 +1,76 @@
 import { ParsedCSV } from '../types/csv';
 
-// the csv is from vscode
-// const document = editor.document;
-// const csvText = document.getText(); ==> ths is a string
-function detectDelimiter(csv: string): string {
-  const line = csv
-    .split(/\r?\n/) // the line split on either \r or \n
-    .find(l => l.trim().length > 0);
+const DELIMITERS = [',', ';', '\t', '|'];
 
-  if (!line) return ',';
+/** How many non-empty lines to sample when guessing the delimiter. */
+const SAMPLE_LINES = 10;
 
-  const delimiters = [',', ';', '\t', '|'];
+/**
+ * Split a single line on `delimiter`, ignoring delimiters inside double quotes.
+ * Returns the field count.
+ */
+function countFields(line: string, delimiter: string): number {
+  let count = 1;
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (c === '"') {
+      if (inQuotes && line[i + 1] === '"') {
+        i++;
+      } else {
+        inQuotes = !inQuotes;
+      }
+    } else if (c === delimiter && !inQuotes) {
+      count++;
+    }
+  }
+
+  return count;
+}
+
+/**
+ * Pick the delimiter that splits the sampled lines into the most fields while
+ * staying consistent between lines — a quoted comma inside a semicolon-delimited
+ * file no longer wins, because it only appears on some rows.
+ */
+function detectDelimiter(csv: string, fileName?: string): string {
+  if (fileName && fileName.toLowerCase().endsWith('.tsv')) {
+    return '\t';
+  }
+
+  // Sampling whole lines is only approximate for quoted newlines, but it is
+  // enough to rank candidate delimiters.
+  const lines = csv
+    .split(/\r?\n/)
+    .filter((l) => l.trim().length > 0)
+    .slice(0, SAMPLE_LINES);
+
+  if (lines.length === 0) return ',';
+
   let best = ',';
-  let max = 0;
+  let bestScore = -1;
 
-  // loop over the delimiters and detect which one of them return the most column
-  for (const d of delimiters) {
-    const count = line.split(d).length - 1;
-    if (count > max) {
-      max = count;
-      best = d;
+  for (const delimiter of DELIMITERS) {
+    const counts = lines.map((line) => countFields(line, delimiter));
+    const first = counts[0];
+    if (first < 2) continue;
+
+    const consistent = counts.every((count) => count === first);
+    // Consistency matters more than raw field count.
+    const score = first * (consistent ? 10 : 1);
+
+    if (score > bestScore) {
+      bestScore = score;
+      best = delimiter;
     }
   }
 
   return best;
 }
 
-
-export function parseCSV(csv: string): ParsedCSV {
-  const delimiter = detectDelimiter(csv);
+export function parseCSV(csv: string, fileName?: string): ParsedCSV {
+  const delimiter = detectDelimiter(csv, fileName);
 
   const rows: string[][] = [];
   let row: string[] = [];
@@ -66,6 +108,13 @@ export function parseCSV(csv: string): ParsedCSV {
   }
 
   const headers = rows.shift() ?? [];
+
+  // Pad short rows so every row can be indexed by column position.
+  for (const r of rows) {
+    while (r.length < headers.length) {
+      r.push('');
+    }
+  }
 
   return {
     headers,
